@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from "react";
 //declarar todos los componentes que se van a usar
-import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Table from "react-bootstrap/Table";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
+import { Form, Button, Table, Container, Navbar, Row, Col, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Form from 'react-bootstrap/Form'
 import axios from 'axios';
 
 //import { useAuth0 } from '@auth0/auth0-react';
@@ -86,7 +79,7 @@ const EventTable = (props) => {
     }
 
     function editarEvento(id_E, evt) {
-  
+
         var nombreM = evt.nombre
         var categoriaM = evt.categoria
         var lugarM = evt.lugar
@@ -131,7 +124,7 @@ const EventTable = (props) => {
             es_presencial: es_pM
         })
             .then(function (response) {
-               //console.log(response['data']);
+                //console.log(response['data']);
                 setEditar(false);
             })
             .catch(function (error) {
@@ -159,26 +152,28 @@ const EventTable = (props) => {
     return (
         <React.Fragment>
             <Navbar id="navbar">
-                <Navbar.Brand href="#home"> Event List</Navbar.Brand>
+                <Container>
+                    <Navbar.Brand> Event List</Navbar.Brand>
+                </Container>
             </Navbar>
             <Container>
                 <Row>
                     <Col>
                         {listaE !== undefined ? (
                             <>
-                                <Table striped bordered hover>
+                                <Table striped bordered hover responsive>
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Fecha Creacion</th>
-                                            <th>Nombre</th>
-                                            <th>Categoria</th>
-                                            <th>Lugar</th>
-                                            <th>Direccion</th>
-                                            <th>Fecha Inicio</th>
-                                            <th>Fecha Fin</th>
-                                            <th>Es presencial ?</th>
-                                            <th>Acciones</th>
+                                            <th valign="middle">#</th>
+                                            <th valign="middle">Fecha Creacion</th>
+                                            <th valign="middle">Nombre</th>
+                                            <th valign="middle">Categoria</th>
+                                            <th valign="middle">Lugar</th>
+                                            <th valign="middle">Direccion</th>
+                                            <th valign="middle">Fecha Inicio</th>
+                                            <th valign="middle">Fecha Fin</th>
+                                            <th valign="middle">Es presencial ?</th>
+                                            <th valign="middle">Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -191,25 +186,24 @@ const EventTable = (props) => {
                                                     cont = cont + 1
                                                     return (
                                                         <tr className="rows" key={index}>
-                                                            <td>{cont}</td>
-                                                            <td>{obj.f_creacion}</td>
-                                                            <td>{obj.nombre}</td>
-                                                            <td>{obj.categoria}</td>
-                                                            <td>{obj.lugar}</td>
-                                                            <td>{obj.direccion}</td>
-                                                            <td>{obj.f_inicio}</td>
-                                                            <td>{obj.f_fin}</td>
-                                                            <td>{obj.es_presencial ? "Si" : "No"}</td>
-                                                            <td>
-
+                                                            <td valign="middle">{cont}</td>
+                                                            <td valign="middle">{obj.f_creacion}</td>
+                                                            <td valign="middle">{obj.nombre}</td>
+                                                            <td valign="middle">{obj.categoria}</td>
+                                                            <td valign="middle">{obj.lugar}</td>
+                                                            <td valign="middle">{obj.direccion}</td>
+                                                            <td valign="middle">{obj.f_inicio}</td>
+                                                            <td valign="middle">{obj.f_fin}</td>
+                                                            <td valign="middle">{obj.es_presencial ? "Si" : "No"}</td>
+                                                            <td valign="middle">
                                                                 <Button
                                                                     color="primary"
                                                                     onClick={() => mostrarModalActualizar(obj)}
                                                                 >
                                                                     Editar
                                                                 </Button>{" "}
+                                                                <p></p>
                                                                 <Button variant="danger" onClick={() => eliminar(obj)}>Eliminar</Button>
-
                                                             </td>
 
                                                         </tr>
@@ -249,9 +243,10 @@ const EventTable = (props) => {
                         >
                             Crea un Evento
                         </Button>
+                        <p></p>
                     </Col>
                 </Row>
-                
+
                 <Row>
                     <Modal
                         show={show}

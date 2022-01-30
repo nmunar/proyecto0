@@ -1,11 +1,12 @@
 import './App.css';
 import LoginButton from './components/LoginButton';
-import Profile from './components/Profile';
 import LogoutButton from './components/LogoutButton';
+import Profile from './components/Profile';
 import EventTable from './components/EventTable';
 import { useAuth0 } from "@auth0/auth0-react";
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
+import { Container, Navbar, Nav } from 'react-bootstrap';
 
 function App() {
   const { user, isAuthenticated } = useAuth0();
@@ -35,17 +36,31 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Event</h1>
+      <Navbar expand="lg" variant="dark" bg="dark">
+        <Container>
+          <Navbar.Brand >Mi manejador de eventos</Navbar.Brand>
+
+          <Nav placement="end">
+            {
+              isAuthenticated ?
+                (<><LogoutButton /></>) : (<></>)
+            }
+          </Nav>
+        </Container>
+      </Navbar>
       {
         isAuthenticated ? (
           <>
             <Profile />
             <EventTable id={id} />
-            <LogoutButton />
 
           </>
         ) : (
-          <LoginButton />
+          <>
+            <p></p>
+            <LoginButton />
+          </>
+
         )
       }
     </div>
