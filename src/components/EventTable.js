@@ -23,7 +23,7 @@ const EventTable = (props) => {
 
     var cont = 0
     if (hayD == 0) {
-        axios.get(`http://127.0.0.1:5000//eventos/${props.id}`)
+        axios.get(`http://${props.ip}:${props.port}//eventos/${props.id}`)
             .then(function (response) {
                 setLista(response['data'])
                 setDatos(1)
@@ -49,7 +49,7 @@ const EventTable = (props) => {
             f_fin: new Date(fechaFinE),
             es_presencial: modalidad
         }
-        axios.post(`http://127.0.0.1:5000/eventos/${props.id}`, {
+        axios.post(`http://${props.ip}:${props.port}/eventos/${props.id}`, {
             nombre: nombreE,
             categoria: categoriaE,
             lugar: lugarE,
@@ -114,7 +114,7 @@ const EventTable = (props) => {
             }
         }
 
-        axios.put(`http://127.0.0.1:5000/evento/${id_E}`, {
+        axios.put(`http://${props.ip}:${props.port}/evento/${id_E}`, {
             nombre: nombreM,
             categoria: categoriaM,
             lugar: lugarM,
@@ -134,7 +134,7 @@ const EventTable = (props) => {
     }
 
     function eliminar(evt) {
-        axios.delete(`http://127.0.0.1:5000/evento/${evt.id}`)
+        axios.delete(`http://${props.ip}:${props.port}/evento/${evt.id}`)
             .then(function (response) {
                 //console.log(response['data']);
                 setEditar(false);

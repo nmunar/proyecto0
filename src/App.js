@@ -8,20 +8,20 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { Container, Navbar, Nav } from 'react-bootstrap';
 
-function App() {
+function App(props) {
   const { user, isAuthenticated } = useAuth0();
   const [id, setId] = useState({});
   const [hayD, setD] = useState(0);
 
   if (isAuthenticated) {
     if (hayD == 0) {
-      axios.post(`http://127.0.0.1:5000/usuarios`, { email: user.email })
+      axios.post(`http://${props.ip}:${props.port}//usuarios`, { email: user.email })
         .then(function (response) {
           setId(response['data']['id']);
         })
         .catch(function (error) {
           if (hayD == 0) {
-            axios.get(`http://127.0.0.1:5000/usuariosE/${user.email}`)
+            axios.get(`http://${props.ip}:${props.port}//usuariosE/${user.email}`)
               .then(function (response) {
                 console.log(response['data']['id']);
                 setId(response['data']['id']);
@@ -52,7 +52,7 @@ function App() {
         isAuthenticated ? (
           <>
             <Profile />
-            <EventTable id={id} />
+            <EventTable id={id} ip ={props.ip} port={props.port}/>
 
           </>
         ) : (

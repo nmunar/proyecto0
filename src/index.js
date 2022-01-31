@@ -7,11 +7,12 @@ import { Auth0Provider } from '@auth0/auth0-react';
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
-
+const ip = process.env.REACT_APP_IP;
+const port = process.env.REACT_APP_PORT;
 ReactDOM.render(
   <React.StrictMode>
     <Auth0Provider domain={domain} clientId={clientId} redirectUri={window.location.origin}>
-      <App />
+      <App ip={ip} port={port}/>
     </Auth0Provider>
   </React.StrictMode>,
   document.getElementById('root')
