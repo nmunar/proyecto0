@@ -73,8 +73,8 @@ class RecursoUsuario(Resource):
         usuario = Usuario.query.get_or_404(id_usuario)
         return usuario_schema.dump(usuario)
 
-    def delete(self,id):
-        usuario = Usuario.query.get_or_404(id)
+    def delete(self,id_usuario):
+        usuario = Usuario.query.get_or_404(id_usuario)
         db.session.delete(usuario)
         db.session.commit()
         return '', 204
