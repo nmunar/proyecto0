@@ -1,0 +1,736 @@
+{
+	"info": {
+		"_postman_id": "eedec9f7-124c-4507-a546-b14f8449f048",
+		"name": "Pruebas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post eventos de un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"hola@hotmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://172.24.41.224:8080/usuarios",
+					"protocol": "http",
+					"host": [
+						"172",
+						"24",
+						"41",
+						"224"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post usuario que ya existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code 200, Email ya existe\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"hola@hotmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://172.24.41.224:8080/usuarios",
+					"protocol": "http",
+					"host": [
+						"172",
+						"24",
+						"41",
+						"224"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get usuario con email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code 200, Se encontró ususario\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://172.24.41.224:8080/usuariosE/hola@hotmail.com",
+					"protocol": "http",
+					"host": [
+						"172",
+						"24",
+						"41",
+						"224"
+					],
+					"port": "8080",
+					"path": [
+						"usuariosE",
+						"hola@hotmail.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get usuario con email que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code, No Existe un usuario con este email\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://172.24.41.224:8080/usuariosE/hola2@hotmail.com",
+					"protocol": "http",
+					"host": [
+						"172",
+						"24",
+						"41",
+						"224"
+					],
+					"port": "8080",
+					"path": [
+						"usuariosE",
+						"hola2@hotmail.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get usuario con id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://172.24.41.224:8080/usuarios/1",
+					"protocol": "http",
+					"host": [
+						"172",
+						"24",
+						"41",
+						"224"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get usuario que no existe con id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://172.24.41.224:8080/usuarios/4",
+					"protocol": "http",
+					"host": [
+						"172",
+						"24",
+						"41",
+						"224"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post evento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code 200, hizo el post del evento\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Super DC\",\r\n    \"categoria\":\"conferencia\",\r\n    \"lugar\":\"Centro\",\r\n    \"direccion\":\"Cll 127 Bis 88-10\",\r\n    \"f_inicio\":\"2022-12-29 13:47:18.631800\", \r\n    \"f_fin\":\"2022-12-29 13:47:35.655500\", \r\n    \"es_presencial\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://172.24.41.224:8080/eventos/1",
+					"protocol": "http",
+					"host": [
+						"172",
+						"24",
+						"41",
+						"224"
+					],
+					"port": "8080",
+					"path": [
+						"eventos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post evento con fecha de dias pasados",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code 400, fecha erronea\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Super DC\",\r\n    \"categoria\":\"conferencia\",\r\n    \"lugar\":\"Centro\",\r\n    \"direccion\":\"Cll 127 Bis 88-10\",\r\n    \"f_inicio\":\"2022-01-29 13:47:18.631800\", \r\n    \"f_fin\":\"2022-01-29 13:47:35.655500\", \r\n    \"es_presencial\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://172.24.41.224:8080/eventos/1",
+					"protocol": "http",
+					"host": [
+						"172",
+						"24",
+						"41",
+						"224"
+					],
+					"port": "8080",
+					"path": [
+						"eventos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post evento con categoria invalida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code 400, categoria erronea\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Super DC\",\r\n    \"categoria\":\"invalida\",\r\n    \"lugar\":\"Centro\",\r\n    \"direccion\":\"Cll 127 Bis 88-10\",\r\n    \"f_inicio\":\"2022-12-29 13:47:18.631800\", \r\n    \"f_fin\":\"2022-12-29 13:47:35.655500\", \r\n    \"es_presencial\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://172.24.41.224:8080/eventos/1",
+					"protocol": "http",
+					"host": [
+						"172",
+						"24",
+						"41",
+						"224"
+					],
+					"port": "8080",
+					"path": [
+						"eventos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put un evento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code 200, Se actualizo el evento\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n\r\n    \"es_presencial\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://172.24.41.224:8080/evento/1",
+					"protocol": "http",
+					"host": [
+						"172",
+						"24",
+						"41",
+						"224"
+					],
+					"port": "8080",
+					"path": [
+						"evento",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put un evento con categoria invalida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code 400, categoria erronea\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"categoria\":\"invalida\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://172.24.41.224:8080/evento/1",
+					"protocol": "http",
+					"host": [
+						"172",
+						"24",
+						"41",
+						"224"
+					],
+					"port": "8080",
+					"path": [
+						"evento",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put un evento con fecha fin mayo a inicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code 400, fecha erronea\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"f_inicio\":\"2022-12-31 13:47:35.655500\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://172.24.41.224:8080/evento/1",
+					"protocol": "http",
+					"host": [
+						"172",
+						"24",
+						"41",
+						"224"
+					],
+					"port": "8080",
+					"path": [
+						"evento",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put un evento con fecha fin menor a inicio Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code 400, fecha erronea\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"f_fin\":\"2022-11-29 13:47:35.655500\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://172.24.41.224:8080/evento/1",
+					"protocol": "http",
+					"host": [
+						"172",
+						"24",
+						"41",
+						"224"
+					],
+					"port": "8080",
+					"path": [
+						"evento",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get eventos de un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code 200, se obtienen los eventos\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://172.24.41.224:8080/eventos/1",
+					"protocol": "http",
+					"host": [
+						"172",
+						"24",
+						"41",
+						"224"
+					],
+					"port": "8080",
+					"path": [
+						"eventos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete un evento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code 204, se elimino el evento\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://172.24.41.224:8080/evento/1",
+					"protocol": "http",
+					"host": [
+						"172",
+						"24",
+						"41",
+						"224"
+					],
+					"port": "8080",
+					"path": [
+						"evento",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete un evento inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code 404, no hay evento que eliminar\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://172.24.41.224:8080/evento/1",
+					"protocol": "http",
+					"host": [
+						"172",
+						"24",
+						"41",
+						"224"
+					],
+					"port": "8080",
+					"path": [
+						"evento",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code 204, se elimino el usuario\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://172.24.41.224:8080/usuarios/1",
+					"protocol": "http",
+					"host": [
+						"172",
+						"24",
+						"41",
+						"224"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete un usuario inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code 404, no hay usuario para eliminar\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://172.24.41.224:8080/usuarios/1",
+					"protocol": "http",
+					"host": [
+						"172",
+						"24",
+						"41",
+						"224"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
