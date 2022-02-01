@@ -15,6 +15,7 @@ function App(props) {
 
   if (isAuthenticated) {
     if (hayD == 0) {
+      console.log(`http://${props.ip}:${props.port}/api/usuarios`)
       axios.post(`http://${props.ip}:${props.port}/api/usuarios`, { email: user.email })
         .then(function (response) {
           setId(response['data']['id']);
