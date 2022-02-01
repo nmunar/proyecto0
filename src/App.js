@@ -15,13 +15,13 @@ function App(props) {
 
   if (isAuthenticated) {
     if (hayD == 0) {
-      axios.post(`http://${props.ip}:${props.port}//usuarios`, { email: user.email })
+      axios.post(`http://${props.ip}:${props.port}/api/usuarios`, { email: user.email })
         .then(function (response) {
           setId(response['data']['id']);
         })
         .catch(function (error) {
           if (hayD == 0) {
-            axios.get(`http://${props.ip}:${props.port}//usuariosE/${user.email}`)
+            axios.get(`http://${props.ip}:${props.port}/api/usuariosE/${user.email}`)
               .then(function (response) {
                 console.log(response['data']['id']);
                 setId(response['data']['id']);

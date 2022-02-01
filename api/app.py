@@ -74,7 +74,7 @@ class RecursoUsuario(Resource):
         return usuario_schema.dump(usuario)
 
     def delete(self,id_usuario):
-        usuario = Usuario.query.get_or_404(id_usuario)
+        usuario = Usuario.query.get_or_404(id_usuario  )
         db.session.delete(usuario)
         db.session.commit()
         return '', 204
@@ -192,11 +192,11 @@ class RecursoUnEvento(Resource):
         return '', 204
 
 
-api.add_resource(RecursoUsuario, '/usuarios/<int:id_usuario>')
-api.add_resource(RecursoAgrergarUsuario, '/usuarios')
-api.add_resource(RecursoListarEventos, '/eventos/<int:id_usuario>')
-api.add_resource(RecursoUnEvento, '/evento/<int:id_evento>')
-api.add_resource(RecursoUsuarioEmail, '/usuariosE/<string:email>')
+api.add_resource(RecursoUsuario, '/api/usuarios/<int:id_usuario>')
+api.add_resource(RecursoAgrergarUsuario, '/api/')
+api.add_resource(RecursoListarEventos, '/api/eventos/<int:id_usuario>')
+api.add_resource(RecursoUnEvento, '/api/evento/<int:id_evento>')
+api.add_resource(RecursoUsuarioEmail, '/api/usuariosE/<string:email>')
 
 if __name__ == '__main__':
 
